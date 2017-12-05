@@ -26,9 +26,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile "com.android.support:appcompat-v7:$support_lib_version"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'io.github.controlwear:virtualjoystick:1.7.2'
+    compile "org.jetbrains.anko:anko:$anko_version"
 
     testCompile 'junit:junit:4.12'
 }
