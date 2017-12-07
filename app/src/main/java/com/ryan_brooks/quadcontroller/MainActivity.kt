@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
     private val bluetoothHandler = BluetoothHandler()
     private val bluetoothInterface = BluetoothInterface(bluetoothHandler)
 
-    private lateinit var edittext: EditText
-    private lateinit var button: Button
     private lateinit var connectButton: Button
     private lateinit var throttleStick: JoystickView
     private lateinit var aileronStick: JoystickView
@@ -41,19 +39,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        edittext = find(R.id.message_edittext)
-        button = find(R.id.send_button)
         connectButton = find(R.id.connect_button)
         throttleStick = find(R.id.throttle_stick)
         aileronStick = find(R.id.aileron_stick)
 
-
         throttleStick.setOnMoveListener(throttleMoveListener)
         aileronStick.setOnMoveListener(aileronMoveListener)
-
-        button.setOnClickListener({
-            bluetoothInterface.sendMessage(edittext.text.toString().trim())
-        })
 
         connectButton.setOnClickListener({
             bluetoothInterface.connect()

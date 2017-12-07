@@ -104,20 +104,6 @@ class BluetoothInterface(private val handler: Handler) {
         state = STATE_NONE
     }
 
-    fun sendMessage(message: String) {
-        if (state != STATE_CONNECTED) {
-            Log.w(TAG, "bluetooth is not connected")
-            return
-        }
-
-        if (message.isNotEmpty()) {
-            // val EOT = 3.toChar()
-            // Get the message bytes and tell the BluetoothChatService to write
-            val send = message.toByteArray()
-            write(send)
-        }
-    }
-
     fun sendFlightInfo(throttle: Byte, yaw: Byte, pitch: Byte, roll: Byte) {
         if (state != STATE_CONNECTED) {
             Log.w(TAG, "bluetooth is not connected")
