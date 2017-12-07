@@ -107,14 +107,18 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if (x == 0.toByte()) {
-            x = 127
-        }
+//        if (x == 0.toByte()) {
+//            x = 127
+//        }
 
         pitch = if (angle in 181..359) {
             (Math.ceil(127 - x.toDouble())).toByte()
         } else {
-            x
+            (-127 - x).toByte()
+        }
+
+        if (pitch == 0.toByte()) {
+            pitch = 127
         }
     }
 
@@ -126,14 +130,18 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if (x == 0.toByte()) {
-            x = 127
-        }
+//        if (x == 0.toByte()) {
+//            x = 127
+//        }
 
         roll = if (angle in 91..269) {
             (Math.ceil(127 - x.toDouble())).toByte()
         } else {
-            x
+            (-127 - x).toByte()
+        }
+
+        if (roll == 0.toByte()) {
+            roll = 127
         }
     }
 
@@ -146,6 +154,7 @@ class MainActivity : AppCompatActivity() {
     private val aileronMoveListener: JoystickView.OnMoveListener = JoystickView.OnMoveListener { angle, strength ->
         calculateRollStrength(angle, strength)
         calculatePitchStrength(angle, strength)
+        Log.d("Pitch", pitch.toString())
         bluetoothInterface.sendFlightInfo(throttle, yaw, pitch, roll)
     }
 
